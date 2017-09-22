@@ -222,6 +222,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\background.png" />
+    <Content Include="Content\Images\navbar\media-header-link-hover.png" />
+    <Content Include="Content\Images\navbar\navbar-link-hover.png" />
+    <Content Include="Content\Images\navbar\navbar-background.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
