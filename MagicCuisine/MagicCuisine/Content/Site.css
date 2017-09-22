@@ -66,20 +66,20 @@ textarea {
 
 .navbar-nav > li > a:hover,
 .navbar-nav > li > a:focus {
-    color: white;
+    color: #5e5e5e;
     background-image: url("Images/navbar/navbar-link-hover.png");
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
     .navbar-nav > li > a:hover,
     .navbar-nav > li > a:focus {
-        color: white;
+        color: #5e5e5e;
         background-image: url("Images/navbar/media-header-link-hover.png");
     }
 }
 
 .navbar-nav > .active > a {
-    color: rgb(238,228,186);
+    color: white;
     background-image: url("Images/navbar/navbar-link-hover.png");
 }
 
