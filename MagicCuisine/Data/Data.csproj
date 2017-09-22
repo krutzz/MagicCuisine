@@ -50,10 +50,19 @@
     <Compile Include="Contracts\IDataBase.cs" />
     <Compile Include="CuisineContext.cs" />
     <Compile Include="DataBase.cs" />
+    <Compile Include="Migrations\201709221413551_init.cs" />
+    <Compile Include="Migrations\201709221413551_init.Designer.cs">
+      <DependentUpon>201709221413551_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709221413551_init.resx">
+      <DependentUpon>201709221413551_init.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
