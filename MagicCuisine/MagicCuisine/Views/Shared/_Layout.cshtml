@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-@using MagicCuisine.Helpers
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,7 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @Mvc.RazorTools.BundleManager.Styles.Render()
 </head>
 <body>
     <div class="navbar navbar-fixed-top">
@@ -33,11 +32,31 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 footerleft footer-hide">
+                    <div class="logofooter"> Magic Cuisine</div>
+                    <p>Nothing is better than going home to family and eating good food and relaxing!</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 footerleft">
+                    <p>@Html.FontAwesome(FontAwesomeIconSet.MapMarker.Large1x()) 31, bul. Alexander Malinov - SOFIA</p>
+                    <p>@Html.FontAwesome(FontAwesomeIconSet.Phone.Large1x()) Phone (Buglaria) : +359 893 32 80 60</p>
+                    <p>@Html.FontAwesome(FontAwesomeIconSet.Envelope.Large1x()) E-mail : tsvetanov@gmail.com</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 footer-icons">
+                    <a href="https://www.facebook.com/telerikacademy">@Html.FontAwesome(FontAwesomeIconSet.FacebookSquare.Large3x())</a>
+                    <a href="https://github.com/tdochev/TheProductiveElephants">@Html.FontAwesome(FontAwesomeIconSet.GithubSquare.Large3x())</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <p>@Html.FontAwesome(FontAwesomeIconSet.Copyright.Large1x()) @DateTime.Now.Year - All Rights protected with DMCA</p>
+            </div>
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
