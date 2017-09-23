@@ -116,7 +116,7 @@ html {
 
 body {
     /* Margin bottom by footer height */
-    margin-bottom: 120px;
+    margin-bottom: 100px;
 }
 
 .footer {
@@ -170,6 +170,11 @@ body {
 }
 
 @media screen and (max-width: 770px) {
+    body {
+        /* Margin bottom by footer height */
+        margin-bottom: 60px;
+    }
+
     .footer {
         zoom: 0.75;
     }
