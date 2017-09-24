@@ -29,7 +29,7 @@ $(function () {
                         $('#avatar-upload-form').submit();
                     } else {
                         // File too large
-                        $('#avatar-upload-form .upload-file-notice').addClass('bg-danger');
+                        toastr.error("File too large");
                     }
                 }
             }
