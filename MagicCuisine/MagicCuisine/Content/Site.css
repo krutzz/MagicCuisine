@@ -111,7 +111,7 @@ textarea {
 /* Footer CSS*/
 html {
     position: relative;
-    min-height: 100%;
+    min-height: 95%;
 }
 
 body {
@@ -184,4 +184,10 @@ body {
     .footer-hide {
         display: none;
     }
+}
+
+/* Avatar */
+.avatar-img img {
+    border: 5px double black;
+    max-width: 200px;
 }

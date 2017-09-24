@@ -12,6 +12,8 @@ namespace MagicCuisine.App_Start
     using Ninject.Web.Common;
     using Data.Contracts;
     using Data;
+    using MagicCuisine.Helpers.Contracts;
+    using MagicCuisine.Helpers;
 
     public static class NinjectWebCommon
     {
@@ -65,6 +67,7 @@ namespace MagicCuisine.App_Start
         {
             kernel.Bind<IDataBase>().To<DataBase>().InRequestScope();
             kernel.Bind<CuisineContext>().ToSelf().InRequestScope();
+            kernel.Bind<IFileHelper>().To<FileHelper>().InRequestScope();
         }
     }
 }

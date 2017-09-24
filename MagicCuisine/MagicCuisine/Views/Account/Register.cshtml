@@ -1,9 +1,15 @@
 ﻿@model MagicCuisine.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
+
 }
 
 <h2>@ViewBag.Title.</h2>
+
+<div class="avatar-img">
+    @Html.ImageActionLink("Link Display Text",
+"Upload", "UploadImage", null, null, (string)@ViewBag.Avatar)
+</div>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {

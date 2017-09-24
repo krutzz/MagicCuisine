@@ -23,9 +23,30 @@ namespace MagicCuisine
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/avatar").Include(
+                     "~/Scripts/site.avatar.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jcrop").Include(
+                      "~/Scripts/jquery.Jcrop.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
+                      "~/Scripts/toastr.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryform").Include(
+                     "~/Scripts/jquery.form.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/jcrop").Include(
+                      "~/Content/jquery.Jcrop.css"));
+
+            bundles.Add(new StyleBundle("~/Content/avatar").Include(
+                      "~/Content/site.avatar.css"));
+
+            bundles.Add(new StyleBundle("~/Content/toastr").Include(
+                      "~/Content/toastr.css"));
         }
     }
 }
