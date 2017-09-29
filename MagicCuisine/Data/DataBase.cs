@@ -1,9 +1,6 @@
 ﻿using Data.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Data.Repository;
+using Data.Repository.Contracts;
 
 namespace Data
 {
@@ -14,7 +11,17 @@ namespace Data
         public DataBase(CuisineContext context)
         {
             this.context = context;
+
+            this.Countries = new CountryRepository(context);
+            this.Towns = new TownRepository(context);
+            this.Addesses = new AddessRepository(context);
         }
+
+        public ICountryRepository Countries { get; private set; }
+
+        public ITownRepository Towns { get; private set; }
+
+        public IAddessRepository Addesses { get; private set; }
 
         public int Complete()
         {

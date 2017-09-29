@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Repository.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,11 @@ namespace Data.Contracts
     public interface IDataBase
     {
         int Complete();
+
+        ICountryRepository Countries { get; }
+
+        ITownRepository Towns { get; }
+
+        IAddessRepository Addesses { get; }
     }
 }

@@ -50,22 +50,39 @@
     <Compile Include="Contracts\IDataBase.cs" />
     <Compile Include="CuisineContext.cs" />
     <Compile Include="DataBase.cs" />
-    <Compile Include="Migrations\201709221413551_init.cs" />
-    <Compile Include="Migrations\201709221413551_init.Designer.cs">
-      <DependentUpon>201709221413551_init.cs</DependentUpon>
+    <Compile Include="Migrations\201709241508083_init.cs" />
+    <Compile Include="Migrations\201709241508083_init.Designer.cs">
+      <DependentUpon>201709241508083_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709241520388_add country to town.cs" />
+    <Compile Include="Migrations\201709241520388_add country to town.Designer.cs">
+      <DependentUpon>201709241520388_add country to town.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Test.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Town.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709221413551_init.resx">
-      <DependentUpon>201709221413551_init.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="Repository\AddessRepository.cs" />
+    <Compile Include="Repository\Contracts\IAddessRepository.cs" />
+    <Compile Include="Repository\Contracts\ICountryRepository.cs" />
+    <Compile Include="Repository\Contracts\IRepository.cs" />
+    <Compile Include="Repository\Contracts\ITownRepository.cs" />
+    <Compile Include="Repository\CountryRepository.cs" />
+    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\TownRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709241508083_init.resx">
+      <DependentUpon>201709241508083_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709241520388_add country to town.resx">
+      <DependentUpon>201709241520388_add country to town.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
