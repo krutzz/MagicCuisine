@@ -35,6 +35,9 @@ namespace MagicCuisine
             bundles.Add(new ScriptBundle("~/bundles/jqueryform").Include(
                      "~/Scripts/jquery.form.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/fillTown").Include(
+                     "~/Scripts/fillTown.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

@@ -1,47 +1,116 @@
 ﻿@model MagicCuisine.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
-
 }
-
-<h2>@ViewBag.Title.</h2>
-
-<div class="avatar-img">
-    @Html.ImageActionLink("Link Display Text",
-"Upload", "UploadImage", null, null, (string)@ViewBag.Avatar)
-</div>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+
+    <div class="row text-center">
+        <h1>Registration Form</h1>
+    </div>
+    <div class="row">
+        <div class="avatar-img col-md-4 text-center">
+            @Html.ImageActionLink("Link Display Text", "Upload", "UploadImage", null, null, (string)@ViewBag.Avatar)
+        </div>
+        <div class="col-md-8">
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control col-md-6" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control col-md-6" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control col-md-6" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control col-md-6" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LastName, new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control col-md-6" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Phone, new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control col-md-6" })
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
+    <div class="row">
+        <fieldset class="border">
+            <legend class="border">Address info</legend>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Country, new { @class = "col-md-2 control-label" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(m => m.Country, new SelectList(Model.Countries, "ID", "Name"), "Select Country", new { @class = "form-control", @onchange = "FillTown()" })
+                </div>
+                @Html.LabelFor(m => m.Town, new { @class = "col-md-2 control-label" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(m => m.Town, new SelectList(Enumerable.Empty<SelectListItem>(), "ID", "Name"), "Select Town", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Street, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Street, new { @class = "form-control test" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Building, new { @class = "col-md-2 control-label" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Building, new { @class = "form-control" })
+                </div>
+                @Html.LabelFor(m => m.PostalCode, new { @class = "col-md-2 control-label" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Entrance, new { @class = "col-md-2 control-label" })
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Entrance, new { @class = "form-control", size = 10 })
+                </div>
+                @Html.LabelFor(m => m.Floor, new { @class = "col-md-2 control-label" })
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Floor, new { @class = "form-control", size = 10 })
+                </div>
+                @Html.LabelFor(m => m.Flat, new { @class = "col-md-2 control-label" })
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Flat, new { @class = "form-control"})
+                </div>
+            </div>
+        </fieldset>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+
+    <div class="row text-center">
+        <div class="form-group">
+            <div>
+                <button type="submit" class="btn btn-primary">@Html.FontAwesome(FontAwesomeIconSet.Send) Register</button>
+            </div>
         </div>
     </div>
 }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/fillTown")
 }

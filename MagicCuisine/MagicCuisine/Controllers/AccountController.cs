@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MagicCuisine.Models;
+using Data.Contracts;
 
 namespace MagicCuisine.Controllers
 {
@@ -18,8 +19,11 @@ namespace MagicCuisine.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        private readonly IDataBase db;
+
+        public AccountController(IDataBase db)
         {
+            this.db = db;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -141,7 +145,14 @@ namespace MagicCuisine.Controllers
         {
             var avatar = TempData["avatar"] ?? "~/Avatars/img-default.png";
             ViewBag.avatar = avatar;
-            return View();
+
+            var countries = this.db.Countries.GetAll();
+
+            var model = new RegisterViewModel();
+
+            model.Countries = countries;
+
+            return View(model);
         }
 
         //
@@ -172,6 +183,13 @@ namespace MagicCuisine.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult FillTown(int countryId)
+        {
+            var towns = this.db.Towns.GetTownsByCountryId(countryId);
+            return Json(towns, JsonRequestBehavior.AllowGet);
         }
 
         //

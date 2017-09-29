@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Data.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MagicCuisine.Models
@@ -79,6 +80,38 @@ namespace MagicCuisine.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        public string Phone { get; set; }
+
+        public ICollection<Country> Countries { get; set; }
+
+        public int Country { get; set; }
+
+        public ICollection<Country> Towns { get; set; }
+
+        public int Town { get; set; }
+
+        public string Street { get; set; }
+
+        public string Flat { get; set; }
+
+        public string Entrance { get; set; }
+
+        public string Floor { get; set; }
+
+        public string Building { get; set; }
+
+        [Display(Name = "Postal Code")]
+        public string PostalCode { get; set; }
+
     }
 
     public class ResetPasswordViewModel
