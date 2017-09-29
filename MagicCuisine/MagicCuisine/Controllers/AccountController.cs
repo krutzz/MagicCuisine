@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MagicCuisine.Models;
 using Data.Contracts;
+using Data.Models;
 
 namespace MagicCuisine.Controllers
 {
@@ -148,10 +149,10 @@ namespace MagicCuisine.Controllers
 
             var countries = this.db.Countries.GetAll();
 
-            var model = new RegisterViewModel();
-
-            model.Countries = countries;
-
+            var model = new RegisterViewModel()
+            {
+                Countries = countries
+            };
             return View(model);
         }
 
@@ -164,7 +165,7 @@ namespace MagicCuisine.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -387,7 +388,7 @@ namespace MagicCuisine.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

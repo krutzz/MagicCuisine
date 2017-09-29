@@ -10,7 +10,7 @@ namespace Data.Repository
 {
     public class AddessRepository : Repository<Address>, IAddessRepository
     {
-        public AddessRepository(CuisineContext context)
+        public AddessRepository(CuisineDbContext context)
             : base(context)
         {
         }

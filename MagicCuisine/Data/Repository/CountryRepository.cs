@@ -10,7 +10,7 @@ namespace Data.Repository
 {
     public class CountryRepository : Repository<Country>, ICountryRepository
     {
-        public CountryRepository(CuisineContext context)
+        public CountryRepository(CuisineDbContext context)
             : base(context)
         {
         }

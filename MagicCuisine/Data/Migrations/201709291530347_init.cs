@@ -1,12 +1,54 @@
-namespace MagicCuisine.Migrations
+namespace Data.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Addresses",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Street = c.String(nullable: false, maxLength: 150),
+                        Building = c.String(maxLength: 10),
+                        Entrance = c.String(maxLength: 10),
+                        Floor = c.String(maxLength: 10),
+                        Flat = c.String(maxLength: 10),
+                        PostalCode = c.String(maxLength: 10),
+                        Country_ID = c.Int(),
+                        Town_ID = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Countries", t => t.Country_ID)
+                .ForeignKey("dbo.Towns", t => t.Town_ID)
+                .Index(t => t.Country_ID)
+                .Index(t => t.Town_ID);
+            
+            CreateTable(
+                "dbo.Countries",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 150),
+                    })
+                .PrimaryKey(t => t.ID)
+                .Index(t => t.Name, unique: true, name: "IX_UniqueName");
+            
+            CreateTable(
+                "dbo.Towns",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 40),
+                        Country_ID = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Countries", t => t.Country_ID)
+                .Index(t => t.Country_ID);
+            
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -35,6 +77,9 @@ namespace MagicCuisine.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        Phone = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -46,9 +91,12 @@ namespace MagicCuisine.Migrations
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
+                        Address_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
+                .ForeignKey("dbo.Addresses", t => t.Address_ID)
+                .Index(t => t.UserName, unique: true, name: "UserNameIndex")
+                .Index(t => t.Address_ID);
             
             CreateTable(
                 "dbo.AspNetUserClaims",
@@ -82,18 +130,30 @@ namespace MagicCuisine.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUsers", "Address_ID", "dbo.Addresses");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Addresses", "Town_ID", "dbo.Towns");
+            DropForeignKey("dbo.Towns", "Country_ID", "dbo.Countries");
+            DropForeignKey("dbo.Addresses", "Country_ID", "dbo.Countries");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
+            DropIndex("dbo.AspNetUsers", new[] { "Address_ID" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Towns", new[] { "Country_ID" });
+            DropIndex("dbo.Countries", "IX_UniqueName");
+            DropIndex("dbo.Addresses", new[] { "Town_ID" });
+            DropIndex("dbo.Addresses", new[] { "Country_ID" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Towns");
+            DropTable("dbo.Countries");
+            DropTable("dbo.Addresses");
         }
     }
 }

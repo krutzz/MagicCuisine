@@ -66,7 +66,7 @@ namespace MagicCuisine.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IDataBase>().To<DataBase>().InRequestScope();
-            kernel.Bind<CuisineContext>().ToSelf().InRequestScope();
+            kernel.Bind<CuisineDbContext>().ToSelf().InRequestScope();
             kernel.Bind<IFileHelper>().To<FileHelper>().InRequestScope();
         }
     }

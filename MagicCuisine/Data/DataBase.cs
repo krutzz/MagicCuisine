@@ -6,9 +6,9 @@ namespace Data
 {
     public class DataBase : IDataBase
     {
-        private readonly CuisineContext context;
+        private readonly CuisineDbContext context;
 
-        public DataBase(CuisineContext context)
+        public DataBase(CuisineDbContext context)
         {
             this.context = context;
 

@@ -10,14 +10,14 @@ namespace Data.Repository
 {
     public class TownRepository : Repository<Town>, ITownRepository
     {
-        public TownRepository(CuisineContext context)
+        public TownRepository(CuisineDbContext context)
             : base(context)
         {
         }
 
-        private CuisineContext CuisineContext
+        private CuisineDbContext CuisineContext
         {
-            get { return this.Context as CuisineContext; }
+            get { return this.Context as CuisineDbContext; }
         }
 
         public IList<Town> GetTownsByCountryId(int countryId)

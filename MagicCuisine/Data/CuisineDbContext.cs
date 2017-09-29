@@ -1,14 +1,15 @@
 ﻿using Data.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure.Annotations;
 
 namespace Data
 {
-    public class CuisineContext : DbContext
+    public class CuisineDbContext : IdentityDbContext<User>
     {
-        public CuisineContext()
-                : base("CuisineDBConnection")
+        public CuisineDbContext()
+                : base("CuisineDBConnection", throwIfV1Schema: false)
         {
         }
 
@@ -17,6 +18,11 @@ namespace Data
         public IDbSet<Country> Countries { get; set; }
 
         public IDbSet<Address> Addresses { get; set; }
+
+        public static CuisineDbContext Create()
+        {
+            return new CuisineDbContext();
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
