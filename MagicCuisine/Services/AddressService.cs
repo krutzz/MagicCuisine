@@ -69,5 +69,10 @@ namespace Services
 
             return address;
         }
+
+        public Address GetAddress(Guid addressId)
+        {
+            return this.addessRepository.Get(addressId);
+        }
     }
 }

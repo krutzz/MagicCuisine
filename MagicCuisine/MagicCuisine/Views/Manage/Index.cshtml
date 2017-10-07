@@ -3,7 +3,85 @@
     ViewBag.Title = "Manage";
 }
 
-<h2>@ViewBag.Title.</h2>
+<div>
+    <div class="row form-group">
+        <div class="avatar-img col-md-4 text-center">
+            <img src=@Model.User.Avatar>
+        </div>
+        <div class="col-md-8">
+            <div class="form-group row">
+                @Html.LabelFor(m => m.User.Email, new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.TextBoxFor(m => m.User.Email, new { @class = "form-control col-md-6", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => m.User.FirstName, new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.TextBoxFor(m => m.User.FirstName, new { @class = "form-control col-md-6", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => m.User.LastName, new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.TextBoxFor(m => m.User.LastName, new { @class = "form-control col-md-6" , @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => m.User.Phone, new { @class = "control-label col-md-2" })
+                <div>
+                    @Html.TextBoxFor(m => m.User.Phone, new { @class = "form-control col-md-6", @readonly = "readonly" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <fieldset class="border">
+            <legend class="border">Address info</legend>
+
+            <div class="form-group row">
+                @Html.LabelFor(m => m.Address.Country, new { @class = "col-md-2 control-label" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Address.Country.Name, new { @readonly = "readonly", @class = "form-control" })
+                </div>
+                @Html.LabelFor(m => m.Address.Town, new { @class = "col-md-2 control-label" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Address.Town.Name, new { @readonly = "readonly", @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => m.Address.Street, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Address.Street, new { @readonly = "readonly", @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => m.Address.Building, new { @class = "col-md-2 control-label" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Address.Building, new { @readonly = "readonly", @class = "form-control" })
+                </div>
+                @Html.LabelFor(m => m.Address.PostalCode, new { @class = "col-md-2 control-label" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Address.PostalCode, new { @readonly = "readonly", @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(m => m.Address.Entrance, new { @class = "col-md-2 control-label" })
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Address.Entrance, new { @readonly = "readonly", size = 10, @class = "form-control" })
+                </div>
+                @Html.LabelFor(m => m.Address.Floor, new { @class = "col-md-2 control-label" })
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Address.Floor, new { @readonly = "readonly", size = 10, @class = "form-control" })
+                </div>
+                @Html.LabelFor(m => m.Address.Flat, new { @class = "col-md-2 control-label" })
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.Address.Flat, new { @readonly = "readonly", @class = "form-control" })
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>

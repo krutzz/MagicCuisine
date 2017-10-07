@@ -12,5 +12,7 @@ namespace Services.Contracts
         ICollection<Town> GetTownsByCountryId(Guid countryId);
 
         Address CreateAddress(AddressServiceModel model);
+
+        Address GetAddress(Guid addressId);
     }
 }

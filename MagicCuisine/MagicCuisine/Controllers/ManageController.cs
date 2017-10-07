@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MagicCuisine.Models;
+using Services.Contracts;
+using AutoMapper;
 
 namespace MagicCuisine.Controllers
 {
@@ -16,8 +18,21 @@ namespace MagicCuisine.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public ManageController()
+        public ManageController(IUserService userService, IAddressService addressService)
         {
+            if (userService == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            this.userService = userService;
+
+            if (addressService == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            this.addressService = addressService;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -32,9 +47,9 @@ namespace MagicCuisine.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -64,13 +79,15 @@ namespace MagicCuisine.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            var user = this.userService.GetUser(userId);
+
+            var address = this.addressService.GetAddress((Guid)user.AddressId);
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                Address = Mapper.Map<AddressViewModel>(address),
+                User = Mapper.Map<UserViewModel>(user)
             };
             return View(model);
         }
@@ -219,9 +236,11 @@ namespace MagicCuisine.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
+        private readonly IUserService userService;
+        private readonly IAddressService addressService;
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -270,6 +289,6 @@ namespace MagicCuisine.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

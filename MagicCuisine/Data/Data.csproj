@@ -61,6 +61,8 @@
     <Compile Include="Migrations\201710071141045_add avatar property.Designer.cs">
       <DependentUpon>201710071141045_add avatar property.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Repository\Contracts\IUserRepository.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="CuisineDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
