@@ -1,16 +1,15 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MagicCuisine.Models;
-using Data.Contracts;
 using Data.Models;
+using System;
+using Services.Contracts;
+using System.Linq;
+using AutoMapper;
 
 namespace MagicCuisine.Controllers
 {
@@ -20,11 +19,16 @@ namespace MagicCuisine.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        private readonly IDataBase db;
+        private readonly IAddressService addressService;
 
-        public AccountController(IDataBase db)
+        public AccountController(IAddressService addressService)
         {
-            this.db = db;
+            if (addressService == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            this.addressService = addressService;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -104,7 +108,9 @@ namespace MagicCuisine.Controllers
             var avatar = TempData["avatar"] ?? "~/Avatars/img-default.png";
             ViewBag.avatar = avatar;
 
-            var countries = this.db.Countries.GetAll();
+            var countries = this.addressService.GetAllCountries()
+                                                 .Select(x => Mapper.Map<CountryViewModel>(x))
+                                                 .ToList();
 
             var model = new RegisterViewModel()
             {
@@ -146,7 +152,9 @@ namespace MagicCuisine.Controllers
         [AllowAnonymous]
         public ActionResult FillTown(int countryId)
         {
-            var towns = this.db.Towns.GetTownsByCountryId(countryId);
+            var towns = this.addressService.GetTownsByCountryId(countryId)
+                                            .Select(x => Mapper.Map<TownViewModel>(x))
+                                            .ToList();
             return Json(towns, JsonRequestBehavior.AllowGet);
         }
 
@@ -183,6 +191,7 @@ namespace MagicCuisine.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
+        private readonly IMapper mapper;
 
         private IAuthenticationManager AuthenticationManager
         {

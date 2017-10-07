@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicCuisine.Tests", "Magic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{DB7BD3B3-CFF5-4982-93D9-81B3F552ADF1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{9E526454-3B43-47EA-853E-7351EFC20296}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DB7BD3B3-CFF5-4982-93D9-81B3F552ADF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB7BD3B3-CFF5-4982-93D9-81B3F552ADF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB7BD3B3-CFF5-4982-93D9-81B3F552ADF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E526454-3B43-47EA-853E-7351EFC20296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E526454-3B43-47EA-853E-7351EFC20296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E526454-3B43-47EA-853E-7351EFC20296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E526454-3B43-47EA-853E-7351EFC20296}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

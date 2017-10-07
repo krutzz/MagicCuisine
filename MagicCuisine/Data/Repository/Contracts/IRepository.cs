@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Data.Repository.Contracts
@@ -8,9 +9,9 @@ namespace Data.Repository.Contracts
     {
         TEntity Get(int id);
 
-        ICollection<TEntity> GetAll();
+        IQueryable<TEntity> GetAll();
 
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
 
         TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
 

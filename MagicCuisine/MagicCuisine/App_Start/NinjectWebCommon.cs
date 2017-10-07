@@ -10,10 +10,15 @@ namespace MagicCuisine.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Data.Contracts;
     using Data;
     using MagicCuisine.Helpers.Contracts;
     using MagicCuisine.Helpers;
+    using Data.UnitOfWork;
+    using Services.Contracts;
+    using Services;
+    using Data.Repository.Contracts;
+    using Data.Repository;
+    using AutoMapper;
 
     public static class NinjectWebCommon
     {
@@ -65,9 +70,14 @@ namespace MagicCuisine.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IDataBase>().To<DataBase>().InRequestScope();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
             kernel.Bind<CuisineDbContext>().ToSelf().InRequestScope();
             kernel.Bind<IFileHelper>().To<FileHelper>().InRequestScope();
+
+            kernel.Bind<IAddressService>().To<AddressService>().InRequestScope();
+            kernel.Bind<ICountryRepository>().To<CountryRepository>().InRequestScope();
+            kernel.Bind<ITownRepository>().To<TownRepository>().InRequestScope();
+            kernel.Bind<IMapper>().To<Mapper>();
         }
     }
 }

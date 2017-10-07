@@ -21,12 +21,12 @@ namespace Data.Repository
             return this.Context.Set<TEntity>().Find(id);
         }
 
-        public ICollection<TEntity> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
-            return this.Context.Set<TEntity>().ToList();
+            return this.Context.Set<TEntity>();
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return this.Context.Set<TEntity>().Where(predicate);
         }

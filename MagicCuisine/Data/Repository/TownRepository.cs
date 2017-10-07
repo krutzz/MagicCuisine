@@ -20,7 +20,7 @@ namespace Data.Repository
             get { return this.Context as CuisineDbContext; }
         }
 
-        public IList<Town> GetTownsByCountryId(int countryId)
+        public IQueryable<Town> GetTownsByCountryId(int countryId)
         {
             var townsList =
                     from towns in this.CuisineContext.Towns
@@ -29,7 +29,7 @@ namespace Data.Repository
                     where country.ID == countryId
                     select towns;
 
-            return townsList.ToList();
+            return townsList;
         }
     }
 }

@@ -32,11 +32,11 @@ namespace MagicCuisine.Models
 
         public string Phone { get; set; }
 
-        public ICollection<Country> Countries { get; set; }
+        public ICollection<CountryViewModel> Countries { get; set; }
 
         public int Country { get; set; }
 
-        public ICollection<Country> Towns { get; set; }
+        public ICollection<TownViewModel> Towns { get; set; }
 
         public int Town { get; set; }
 

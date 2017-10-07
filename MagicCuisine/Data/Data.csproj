@@ -53,9 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IDataBase.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="CuisineDbContext.cs" />
-    <Compile Include="DataBase.cs" />
     <Compile Include="Migrations\201709291530347_init.cs" />
     <Compile Include="Migrations\201709291530347_init.Designer.cs">
       <DependentUpon>201709291530347_init.cs</DependentUpon>
@@ -74,6 +73,7 @@
     <Compile Include="Repository\CountryRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\TownRepository.cs" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
