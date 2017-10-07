@@ -19,6 +19,8 @@ namespace Data
 
         public IDbSet<Address> Addresses { get; set; }
 
+        public IDbSet<Recipe> Recipes { get; set; }
+
         public static CuisineDbContext Create()
         {
             return new CuisineDbContext();

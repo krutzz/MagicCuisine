@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="avatar-img col-md-4 text-center">
-            @Html.ImageActionLink("Link Display Text", "Upload", "UploadImage", null, null, Model.Avatar)
+            @Html.ImageActionLink("Link Display Text", "Upload", "UploadImage", new { area = "", origin = "/account/register" }, null, Model.Avatar)
             @Html.HiddenFor(m => m.Avatar)
         </div>
         <div class="col-md-8">

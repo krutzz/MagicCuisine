@@ -23,29 +23,29 @@ namespace MagicCuisine.Helpers
 
         private static readonly string[] _imageFileExtensions = { ".jpg", ".png", ".gif", ".jpeg" };
 
-        public UploadViewModel UploadFile(IEnumerable<HttpPostedFileBase> files)
+        public UploadViewModel UploadFile(IEnumerable<HttpPostedFileBase> files, string origin)
         {
             if (files == null || !files.Any())
             {
-                return new UploadViewModel(false, null, "No file uploaded.");
+                return new UploadViewModel(false, null, "No file uploaded.", origin);
             }
 
             var file = files.FirstOrDefault();  // get ONE only
             if (file == null || !IsImage(file))
             {
-                return new UploadViewModel(false, null, "File is of wrong format.");
+                return new UploadViewModel(false, null, "File is of wrong format.", origin);
             }
 
             if (file.ContentLength <= 0)
             {
-                return new UploadViewModel(false, null, "File cannot be zero length.");
+                return new UploadViewModel(false, null, "File cannot be zero length.", origin);
             }
             var webPath = GetTempSavedFilePath(file);
 
-            return new UploadViewModel(true, webPath.Replace("\\", "/"), null); // success
+            return new UploadViewModel(true, webPath.Replace("\\", "/"), null, origin); // success
         }
 
-        public UploadViewModel CropImage(string t, string l, string h, string w, string fileName)
+        public UploadViewModel CropImage(string t, string l, string h, string w, string fileName, string origin)
         {
             try
             {
@@ -73,11 +73,11 @@ namespace MagicCuisine.Helpers
                 }
 
                 img.Save(newFileLocation);
-                return new UploadViewModel(true, newFileName, null);
+                return new UploadViewModel(true, newFileName, null, origin);
             }
             catch (Exception ex)
             {
-                return new UploadViewModel(false, null, "Unable to upload file.\nERRORINFO: " + ex.Message);
+                return new UploadViewModel(false, null, "Unable to upload file.\nERRORINFO: " + ex.Message, origin);
             }
         }
 

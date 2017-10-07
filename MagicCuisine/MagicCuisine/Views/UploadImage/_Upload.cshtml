@@ -11,6 +11,7 @@
                                     new { enctype = "multipart/form-data", id = "avatar-upload-form" }))
         {
             @Html.AntiForgeryToken()
+            <input id ="origin" type="hidden" name="origin" value="@ViewBag.origin"/>
             <input type="file" name="files" /><br>
             <div class="upload-file-notice">Maximum Size: <span id="avatar-max-size"></span> MB</div>
         }
@@ -29,6 +30,6 @@
                 </div>
             </div>
         </p>
-        <p><button class="btn btn-default" onclick=" saveAvatar() ">Save Avatar</button></p>
+        <p><button class="btn btn-default" onclick=" saveAvatar() ">Save</button></p>
     </div>
 </div>

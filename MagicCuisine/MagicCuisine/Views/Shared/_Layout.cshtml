@@ -23,10 +23,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="@Html.IsSelected(actions: "Index", controllers: "Home", cssClass:"active")">@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li class="@Html.IsSelected(actions: "About", controllers: "Home", cssClass:"active")">@Html.ActionLink("About", "About", "Home")</li>
-                    <li class="@Html.IsSelected(actions: "Contact", controllers: "Home", cssClass:"active")">@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li class="@Html.IsSelected(actions: "Index", controllers: "Test", cssClass:"active")">@Html.ActionLink("Test", "Index", "Test")</li>
+                    <li class="@Html.IsSelected(actions: "Index", controllers: "Home", cssClass:"active")">@Html.ActionLink("Home", "Index", "Home", new { area = "" },null)</li>
+                    <li class="@Html.IsSelected(actions: "About", controllers: "Home", cssClass:"active")">@Html.ActionLink("About", "About", "Home", new { area = "" }, null)</li>
+                    <li class="@Html.IsSelected(actions: "Contact", controllers: "Home", cssClass:"active")">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, null)</li>
+                    <li class="@Html.IsSelected(actions: "Index", controllers: "Test", cssClass:"active")">@Html.ActionLink("Test", "Index", "Test", new { area = "" }, null)</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

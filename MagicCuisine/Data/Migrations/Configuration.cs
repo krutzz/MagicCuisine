@@ -44,7 +44,8 @@ namespace Data.Migrations
                     UserName = AdministratorUserName,
                     Email = AdministratorUserName,
                     EmailConfirmed = true,
-                    AddressId = null
+                    AddressId = null,
+                    Avatar = "/Avatars/img-default.png"
                 };
 
                 userManager.Create(user, AdministratorPassword);

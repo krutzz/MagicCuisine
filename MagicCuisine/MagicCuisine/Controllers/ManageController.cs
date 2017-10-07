@@ -9,6 +9,7 @@ using Microsoft.Owin.Security;
 using MagicCuisine.Models;
 using Services.Contracts;
 using AutoMapper;
+using Data.Models;
 
 namespace MagicCuisine.Controllers
 {
@@ -67,7 +68,7 @@ namespace MagicCuisine.Controllers
 
         //
         // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        public ActionResult Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -81,7 +82,11 @@ namespace MagicCuisine.Controllers
             var userId = User.Identity.GetUserId();
             var user = this.userService.GetUser(userId);
 
-            var address = this.addressService.GetAddress((Guid)user.AddressId);
+            Address address = null;
+            if (user.AddressId != null)
+            {
+                address = this.addressService.GetAddress((Guid)user.AddressId);
+            }
 
             var model = new IndexViewModel
             {

@@ -105,7 +105,7 @@ namespace MagicCuisine.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            var avatar = TempData["avatar"] ?? "~/Avatars/img-default.png";
+            var avatar = TempData["avatar"] ?? "/Avatars/img-default.png";
 
             var countries = this.addressService.GetAllCountries()
                                                  .Select(x => Mapper.Map<CountryViewModel>(x))

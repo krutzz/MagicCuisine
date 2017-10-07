@@ -52,6 +52,7 @@ function initAvatarUpload() {
                 $('#status').html(data.errorMessage);
             } else {
                 $('#preview-pane .preview-container img').attr('src', data.avatarFileLocation);
+                $('#preview-pane .preview-container img').attr('origin', data.origin);
                 var img = $('#crop-avatar-target');
                 img.attr('src', data.avatarFileLocation);
 
@@ -135,11 +136,12 @@ function saveAvatar() {
             h: img.css('height'),
             l: img.css('marginLeft'),
             t: img.css('marginTop'),
-            fileName: img.attr('src')
+            fileName: img.attr('src'),
+            origin: img.attr('origin')
         }
     }).done(function (data) {
         if (data.success === true) {
-            $(location).attr('href', '/account/register');
+            $(location).attr('href', data.origin);
             toastr.success('Done! Please continue your registration');
         } else {
             toastr.error(data.errorMessage)

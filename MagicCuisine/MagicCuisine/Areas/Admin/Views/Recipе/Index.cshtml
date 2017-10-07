@@ -1,0 +1,38 @@
+﻿@model MagicCuisine.Areas.Admin.Models.IndexViewModel
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    @using (Html.BeginForm("Index", "Recipе", new { area = "Admin"}, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="row text-center">
+            <h1>New Recipe</h1>
+        </div>
+        <div class="row text-center">
+            <div class="avatar-img col-md-4 text-center">
+                @Html.ImageActionLink("Link Display Text", "Upload", "UploadImage", new { area = "",  origin = "/admin/recipе/index" }, null, Model.Avatar)
+                @Html.HiddenFor(m => m.Avatar)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Title, new { @class = "control-label" })
+            <div>
+                @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+            <div>
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control col-md-10" , cols = 60, rows = 15, style = "min-width: 100%" })
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="form-group">
+                <div>
+                    <button type="submit" class="btn btn-primary">@Html.FontAwesome(FontAwesomeIconSet.Send) Add</button>
+                </div>
+            </div>
+        </div>
+    }

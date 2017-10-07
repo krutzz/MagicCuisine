@@ -7,13 +7,13 @@ namespace Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addavatarproperty : IMigrationMetadata
+    public sealed partial class addrecipetable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addavatarproperty));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addrecipetable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710071141045_add avatar property"; }
+            get { return "201710072020403_add recipe table"; }
         }
         
         string IMigrationMetadata.Source

@@ -14,8 +14,9 @@ namespace MagicCuisine.Controllers
             this.fileHelper = fileHelper;
         }
 
-        public ActionResult Upload()
+        public ActionResult Upload(string origin)
         {
+            ViewBag.origin = origin;
             return View();
         }
 
@@ -26,16 +27,16 @@ namespace MagicCuisine.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult _Upload(IEnumerable<HttpPostedFileBase> files)
+        public ActionResult _Upload(IEnumerable<HttpPostedFileBase> files, string origin)
         {
-            var result = this.fileHelper.UploadFile(files);
+            var result = this.fileHelper.UploadFile(files, origin);
             return Json(result.ToJson());
         }
 
         [HttpPost]
-        public ActionResult Save(string t, string l, string h, string w, string fileName)
+        public ActionResult Save(string t, string l, string h, string w, string fileName, string origin)
         {
-            var result = this.fileHelper.CropImage(t, l, h, w, fileName);
+            var result = this.fileHelper.CropImage(t, l, h, w, fileName, origin);
             if (result.success)
             {
                 TempData["avatar"] = result.avatarFileLocation;
