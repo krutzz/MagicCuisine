@@ -9,6 +9,6 @@ namespace Data.Repository.Contracts
 {
     public interface ITownRepository : IRepository<Town>
     {
-        IQueryable<Town> GetTownsByCountryId(int countryId);
+        IQueryable<Town> GetTownsByCountryId(Guid countryId);
     }
 }

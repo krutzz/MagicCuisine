@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -13,7 +14,9 @@ namespace Data.Models
 
         public string Phone { get; set; }
 
-        public virtual Address Address { get; set; }
+        public Guid? AddressId { get; set; }
+
+        public string Avatar { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

@@ -77,7 +77,7 @@ namespace MagicCuisine.App_Start
             kernel.Bind<IAddressService>().To<AddressService>().InRequestScope();
             kernel.Bind<ICountryRepository>().To<CountryRepository>().InRequestScope();
             kernel.Bind<ITownRepository>().To<TownRepository>().InRequestScope();
-            kernel.Bind<IMapper>().To<Mapper>();
+            kernel.Bind<IAddessRepository>().To<AddessRepository>().InRequestScope();
         }
     }
 }

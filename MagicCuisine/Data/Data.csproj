@@ -53,12 +53,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201710071128556_init.cs" />
+    <Compile Include="Migrations\201710071128556_init.Designer.cs">
+      <DependentUpon>201710071128556_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710071141045_add avatar property.cs" />
+    <Compile Include="Migrations\201710071141045_add avatar property.Designer.cs">
+      <DependentUpon>201710071141045_add avatar property.cs</DependentUpon>
+    </Compile>
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="CuisineDbContext.cs" />
-    <Compile Include="Migrations\201709291530347_init.cs" />
-    <Compile Include="Migrations\201709291530347_init.Designer.cs">
-      <DependentUpon>201709291530347_init.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Country.cs" />
@@ -80,8 +84,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709291530347_init.resx">
-      <DependentUpon>201709291530347_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710071128556_init.resx">
+      <DependentUpon>201710071128556_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710071141045_add avatar property.resx">
+      <DependentUpon>201710071141045_add avatar property.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

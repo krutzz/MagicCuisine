@@ -7,7 +7,7 @@ namespace Data.Repository.Contracts
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        TEntity Get(int id);
+        TEntity Get(Guid id);
 
         IQueryable<TEntity> GetAll();
 

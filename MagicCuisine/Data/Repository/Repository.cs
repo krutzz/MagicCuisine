@@ -16,7 +16,7 @@ namespace Data.Repository
             this.Context = context;
         }
 
-        public TEntity Get(int id)
+        public TEntity Get(Guid id)
         {
             return this.Context.Set<TEntity>().Find(id);
         }

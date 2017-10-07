@@ -20,7 +20,7 @@ namespace Data.Repository
             get { return this.Context as CuisineDbContext; }
         }
 
-        public IQueryable<Town> GetTownsByCountryId(int countryId)
+        public IQueryable<Town> GetTownsByCountryId(Guid countryId)
         {
             var townsList =
                     from towns in this.CuisineContext.Towns

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AddressService.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
+    <Compile Include="Model\AddressServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

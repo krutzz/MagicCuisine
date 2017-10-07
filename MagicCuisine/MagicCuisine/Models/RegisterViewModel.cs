@@ -1,4 +1,6 @@
 ﻿using Data.Models;
+using Services.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -34,11 +36,11 @@ namespace MagicCuisine.Models
 
         public ICollection<CountryViewModel> Countries { get; set; }
 
-        public int Country { get; set; }
+        public Guid Country { get; set; }
 
         public ICollection<TownViewModel> Towns { get; set; }
 
-        public int Town { get; set; }
+        public Guid Town { get; set; }
 
         public string Street { get; set; }
 
@@ -53,5 +55,21 @@ namespace MagicCuisine.Models
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
 
+        public string Avatar { get; set; }
+
+        public AddressServiceModel GetAddressServiceModel()
+        {
+            return new AddressServiceModel()
+            {
+                Street = this.Street,
+                Building = this.Building,
+                Entrance = this.Entrance,
+                Floor = this.Floor,
+                Flat = this.Flat,
+                PostalCode = this.PostalCode,
+                Country = this.Country,
+                Town = this.Town
+            };
+        }
     }
 }

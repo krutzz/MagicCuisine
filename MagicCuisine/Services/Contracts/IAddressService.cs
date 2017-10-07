@@ -1,4 +1,6 @@
 ﻿using Data.Models;
+using Services.Model;
+using System;
 using System.Collections.Generic;
 
 namespace Services.Contracts
@@ -7,6 +9,8 @@ namespace Services.Contracts
     {
         ICollection<Country> GetAllCountries();
 
-        ICollection<Town> GetTownsByCountryId(int countryId);
+        ICollection<Town> GetTownsByCountryId(Guid countryId);
+
+        Address CreateAddress(AddressServiceModel model);
     }
 }

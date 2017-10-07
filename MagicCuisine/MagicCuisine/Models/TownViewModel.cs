@@ -1,11 +1,12 @@
 ﻿using Data.Models;
 using MagicCuisine.Infrastructure;
+using System;
 
 namespace MagicCuisine.Models
 {
     public class TownViewModel : IMapFrom<Town>
     {
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         public string Name { get; set; }
 

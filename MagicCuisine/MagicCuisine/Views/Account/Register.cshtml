@@ -12,7 +12,8 @@
     </div>
     <div class="row">
         <div class="avatar-img col-md-4 text-center">
-            @Html.ImageActionLink("Link Display Text", "Upload", "UploadImage", null, null, (string)@ViewBag.Avatar)
+            @Html.ImageActionLink("Link Display Text", "Upload", "UploadImage", null, null, Model.Avatar)
+            @Html.HiddenFor(m => m.Avatar)
         </div>
         <div class="col-md-8">
             @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -95,7 +96,7 @@
                 </div>
                 @Html.LabelFor(m => m.Flat, new { @class = "col-md-2 control-label" })
                 <div class="col-md-2">
-                    @Html.TextBoxFor(m => m.Flat, new { @class = "form-control"})
+                    @Html.TextBoxFor(m => m.Flat, new { @class = "form-control" })
                 </div>
             </div>
         </fieldset>
