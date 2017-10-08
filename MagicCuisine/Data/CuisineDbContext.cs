@@ -21,6 +21,8 @@ namespace Data
 
         public IDbSet<Recipe> Recipes { get; set; }
 
+        public IDbSet<Comment> Comments { get; set; }
+
         public static CuisineDbContext Create()
         {
             return new CuisineDbContext();

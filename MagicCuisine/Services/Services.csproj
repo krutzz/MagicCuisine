@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressService.cs" />
+    <Compile Include="CommentService.cs" />
     <Compile Include="Contracts\IAddressService.cs" />
+    <Compile Include="Contracts\ICommentService.cs" />
     <Compile Include="Contracts\IRecipeService.cs" />
     <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="Model\AddressServiceModel.cs" />

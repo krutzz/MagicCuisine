@@ -21,6 +21,8 @@ namespace Data.Repository.Contracts
 
         void Remove(TEntity entity);
 
+        void Update(TEntity entity);
+
         void RemoveRange(IEnumerable<TEntity> entities);
     }
 }

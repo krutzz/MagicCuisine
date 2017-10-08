@@ -1,0 +1,19 @@
+﻿@model MagicCuisine.Models.CommentIndexViewModel
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("Index", "Comment", new { area = "" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.RecipeId)
+            <div class="form-group">
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control col-md-10", rows = 5, style = "min-width: 100%" })
+            </div>
+            <div class="row text-center">
+                <div class="form-group">
+                    <div>
+                        <button type="submit" class="btn btn-primary">Comment</button>
+                    </div>
+                </div>
+            </div>
+    }
+}

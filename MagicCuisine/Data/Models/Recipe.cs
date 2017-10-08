@@ -1,5 +1,6 @@
 ﻿using Data.Models.Contracts;
 using System;
+using System.Collections.Generic;
 
 namespace Data.Models
 {
@@ -28,5 +29,7 @@ namespace Data.Models
         public string Title { get; set; }
 
         public string Description { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

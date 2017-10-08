@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -54,6 +55,17 @@ namespace Data.Repository
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
             this.Context.Set<TEntity>().RemoveRange(entities);
+        }
+
+        public void Update(TEntity entity)
+        {
+            DbEntityEntry entry = this.Context.Entry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                this.Context.Set<TEntity>().Attach(entity);
+            }
+
+            entry.State = EntityState.Modified;
         }
     }
 }
