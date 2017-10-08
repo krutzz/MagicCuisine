@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AutoMapper;
+using MagicCuisine.Models;
+using Services.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +11,31 @@ namespace MagicCuisine.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IRecipeService recipeService;
+
+        public HomeController(IRecipeService recipeService)
+        {
+            if (recipeService == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            this.recipeService = recipeService;
+        }
+
         public ActionResult Index()
         {
-            return View();
-        }
+            var recipes = this.recipeService.GetAll(false)
+                                            .Select(r => Mapper.Map<RecipeViewModel>(r))
+                                            .ToList();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            var model = new HomeIndexViewModel()
+            {
+                LogoImg = "Content/Images/general/logo.png",
+                Recipes = recipes
+            };
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(model);
         }
     }
 }

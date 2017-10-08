@@ -209,3 +209,11 @@ legend.border {
     padding: 0 10px;
     border-bottom: none;
 }
+
+#logo-img {
+    width: 100%;
+}
+
+.logo-container{
+    padding: 0 !important;
+}

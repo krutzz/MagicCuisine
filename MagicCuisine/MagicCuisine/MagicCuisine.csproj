@@ -232,9 +232,11 @@
     <Compile Include="Models\AddressViewModel.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
-    <Compile Include="Models\IndexViewModel.cs" />
+    <Compile Include="Models\HomeIndexViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ManageIndexViewModel.cs" />
     <Compile Include="Models\ManageLoginsViewModel.cs" />
+    <Compile Include="Models\RecipeViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\SetPasswordViewModel.cs" />
     <Compile Include="Models\TownViewModel.cs" />
@@ -251,6 +253,7 @@
     <Content Include="Content\Images\background.png" />
     <Content Include="Content\Images\footer\footer-background.png" />
     <Content Include="Avatars\img-default.png" />
+    <Content Include="Content\Images\general\logo.png" />
     <Content Include="Content\Images\navbar\media-header-link-hover.png" />
     <Content Include="Content\Images\navbar\navbar-link-hover.png" />
     <Content Include="Content\Images\navbar\navbar-background.png" />
@@ -307,8 +310,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
@@ -317,7 +318,6 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\UploadImage\Upload.cshtml" />
     <Content Include="Views\UploadImage\_Upload.cshtml" />
   </ItemGroup>

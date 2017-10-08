@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Data.Models;
 using Data.Repository.Contracts;
 using Data.UnitOfWork;
@@ -36,6 +34,11 @@ namespace Services
         {
             this.recipeRepository.Add(recipe);
             this.unitOfWork.Complete();
+        }
+
+        public ICollection<Recipe> GetAll(bool isDeleted)
+        {
+           return this.recipeRepository.Find(r => r.IsDeleted == isDeleted).ToList();
         }
     }
 }

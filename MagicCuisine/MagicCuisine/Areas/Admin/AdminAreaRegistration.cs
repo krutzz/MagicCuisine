@@ -14,14 +14,10 @@ namespace MagicCuisine.Areas.Admin
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
-            context.Routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            context.Routes.LowercaseUrls = true;
-
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new {controller = "Admin", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

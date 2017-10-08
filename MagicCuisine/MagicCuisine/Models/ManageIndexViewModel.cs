@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNet.Identity;
-
-namespace MagicCuisine.Models
+﻿namespace MagicCuisine.Models
 {
-    public class IndexViewModel
+    public class ManageIndexViewModel
     {
         public bool HasPassword { get; set; }
 
@@ -11,6 +8,4 @@ namespace MagicCuisine.Models
 
         public AddressViewModel Address { get; set; }
     }
-
-
 }

@@ -88,7 +88,7 @@ namespace MagicCuisine.Controllers
                 address = this.addressService.GetAddress((Guid)user.AddressId);
             }
 
-            var model = new IndexViewModel
+            var model = new ManageIndexViewModel
             {
                 HasPassword = HasPassword(),
                 Address = Mapper.Map<AddressViewModel>(address),
