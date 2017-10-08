@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Data.Models
 {
@@ -28,16 +25,28 @@ namespace Data.Models
 
         public Guid ID { get; set; }
 
+        [Required]
+        [MaxLength(150)]
         public string Street { get; set; }
 
+        [Required]
+        [MaxLength(10)]
         public string Building { get; set; }
 
+        [Required]
+        [MaxLength(10)]
         public string Entrance { get; set; }
 
+        [Required]
+        [MaxLength(10)]
         public string Floor { get; set; }
 
+        [Required]
+        [MaxLength(10)]
         public string Flat { get; set; }
 
+        [Required]
+        [MaxLength(10)]
         public string PostalCode { get; set; }
 
         public virtual Country Country { get; set; }

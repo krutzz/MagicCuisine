@@ -9,6 +9,5 @@ namespace Data.Repository
             : base(context)
         {
         }
-
     }
 }

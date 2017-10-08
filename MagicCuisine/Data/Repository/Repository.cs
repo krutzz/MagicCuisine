@@ -14,6 +14,11 @@ namespace Data.Repository
 
         public Repository(DbContext context)
         {
+            if(context == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             this.Context = context;
         }
 

@@ -1,6 +1,7 @@
 ﻿using Data.Models.Contracts;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Data.Models
 {
@@ -24,8 +25,12 @@ namespace Data.Models
 
         public bool IsDeleted { get; set; }
 
+        [Required]
+        [MaxLength(50)]
         public string Avatar { get; set; }
 
+        [Required]
+        [MaxLength(50)]
         public string Title { get; set; }
 
         public string Description { get; set; }

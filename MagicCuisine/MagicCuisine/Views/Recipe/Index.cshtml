@@ -16,11 +16,14 @@
     </div>
 </div>
 
+@if (Request.IsAuthenticated)
+{
 <div class="row">
-   @{Html.RenderAction("Index", "Comment", new { recipeId = Model.recipe.ID});}
+   @{Html.RenderAction("Index", "Comment", new { recipeId = Model.recipe.ID });}
 </div>
+}
 
-Comments
+<h1>Comments</h1>
 
 @{
     foreach (var item in Model.recipe.Comments)

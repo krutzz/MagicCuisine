@@ -198,7 +198,6 @@ namespace MagicCuisine.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
-        private readonly IMapper mapper;
 
         private IAuthenticationManager AuthenticationManager
         {

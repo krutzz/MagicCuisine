@@ -13,11 +13,11 @@ namespace Data.Migrations
                     {
                         ID = c.Guid(nullable: false),
                         Street = c.String(nullable: false, maxLength: 150),
-                        Building = c.String(maxLength: 10),
-                        Entrance = c.String(maxLength: 10),
-                        Floor = c.String(maxLength: 10),
-                        Flat = c.String(maxLength: 10),
-                        PostalCode = c.String(maxLength: 10),
+                        Building = c.String(nullable: false, maxLength: 10),
+                        Entrance = c.String(nullable: false, maxLength: 10),
+                        Floor = c.String(nullable: false, maxLength: 10),
+                        Flat = c.String(nullable: false, maxLength: 10),
+                        PostalCode = c.String(nullable: false, maxLength: 10),
                         Country_ID = c.Guid(),
                         Town_ID = c.Guid(),
                     })
@@ -35,42 +35,49 @@ namespace Data.Migrations
                         Name = c.String(nullable: false, maxLength: 150),
                     })
                 .PrimaryKey(t => t.ID)
-                .Index(t => t.Name, unique: true, name: "IX_UniqueName");
+                .Index(t => t.Name, unique: true);
             
             CreateTable(
                 "dbo.Towns",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Name = c.String(nullable: false, maxLength: 40),
+                        Name = c.String(nullable: false, maxLength: 50),
                         Country_ID = c.Guid(),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Countries", t => t.Country_ID)
+                .Index(t => t.Name, unique: true)
                 .Index(t => t.Country_ID);
             
             CreateTable(
-                "dbo.AspNetRoles",
+                "dbo.Comments",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(nullable: false, maxLength: 256),
+                        ID = c.Guid(nullable: false),
+                        Date = c.DateTime(nullable: false),
+                        Description = c.String(),
+                        IsDeleted = c.Boolean(nullable: false),
+                        Recipe_ID = c.Guid(),
+                        User_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Recipes", t => t.Recipe_ID)
+                .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
+                .Index(t => t.Recipe_ID)
+                .Index(t => t.User_Id);
             
             CreateTable(
-                "dbo.AspNetUserRoles",
+                "dbo.Recipes",
                 c => new
                     {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
+                        ID = c.Guid(nullable: false),
+                        IsDeleted = c.Boolean(nullable: false),
+                        Avatar = c.String(nullable: false, maxLength: 50),
+                        Title = c.String(nullable: false, maxLength: 50),
+                        Description = c.String(),
                     })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.RoleId);
+                .PrimaryKey(t => t.ID);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -122,32 +129,62 @@ namespace Data.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
+            CreateTable(
+                "dbo.AspNetUserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.AspNetRoles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(nullable: false, maxLength: 256),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Comments", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Comments", "Recipe_ID", "dbo.Recipes");
             DropForeignKey("dbo.Addresses", "Town_ID", "dbo.Towns");
             DropForeignKey("dbo.Towns", "Country_ID", "dbo.Countries");
             DropForeignKey("dbo.Addresses", "Country_ID", "dbo.Countries");
+            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
-            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
-            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Comments", new[] { "User_Id" });
+            DropIndex("dbo.Comments", new[] { "Recipe_ID" });
             DropIndex("dbo.Towns", new[] { "Country_ID" });
-            DropIndex("dbo.Countries", "IX_UniqueName");
+            DropIndex("dbo.Towns", new[] { "Name" });
+            DropIndex("dbo.Countries", new[] { "Name" });
             DropIndex("dbo.Addresses", new[] { "Town_ID" });
             DropIndex("dbo.Addresses", new[] { "Country_ID" });
+            DropTable("dbo.AspNetRoles");
+            DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
-            DropTable("dbo.AspNetUserRoles");
-            DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Recipes");
+            DropTable("dbo.Comments");
             DropTable("dbo.Towns");
             DropTable("dbo.Countries");
             DropTable("dbo.Addresses");

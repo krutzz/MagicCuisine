@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Models
 {
@@ -11,7 +13,9 @@ namespace Data.Models
 
         public Guid ID { get; set; }
 
+        [Required]
+        [MaxLength(150)]
+        [Index(IsUnique = true)]
         public string Name { get; set; }
     }
-
 }
