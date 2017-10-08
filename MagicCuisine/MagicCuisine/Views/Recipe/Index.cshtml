@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-@model MagicCuisine.Models.RecipeIndexViewModel 
+@model MagicCuisine.Models.RecipeIndexViewModel
 @{
     ViewBag.Title = "Index";
 }
@@ -18,10 +18,10 @@
 
 @if (Request.IsAuthenticated)
 {
-<div class="row">
-   @{Html.RenderAction("Index", "Comment", new { recipeId = Model.recipe.ID });}
-</div>
-}
+    <div class="row">
+        @{Html.RenderAction("Index", "Comment", new { recipeId = Model.recipe.ID });}
+    </div>
+            }
 
 <h1>Comments</h1>
 
@@ -38,21 +38,25 @@
                     <div class="message">
                         <span class="pre-wrap">@item.Description</span>
                     </div>
+                    <div class="message-footer">
+                        <div class="col">@item.UserEmail</div>
+                        <div class="col">@item.Date</div>
+                    </div>
                 </div>
             </div>
-            @if(User.Identity.GetUserName() == item.UserEmail )
+            @if (User.Identity.GetUserName() == item.UserEmail)
             {
-             <div>
-                 @using (Html.BeginForm("Delete", "Comment", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                 {
-                     @Html.AntiForgeryToken()
-                     @Html.Hidden("commentId", item.ID)
-                     @Html.Hidden("recipeId", Model.recipe.ID)
-                     <button type="submit" class="btn btn-primary">@Html.FontAwesome(FontAwesomeIconSet.Close)</button>
-                 }
-             </div>
+                <div>
+                    @using (Html.BeginForm("Delete", "Comment", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("commentId", item.ID)
+                        @Html.Hidden("recipeId", Model.recipe.ID)
+                        <button type="submit" class="btn btn-primary">@Html.FontAwesome(FontAwesomeIconSet.Close)</button>
+                    }
+                </div>
             }
-           
+
         </div>
     }
 }

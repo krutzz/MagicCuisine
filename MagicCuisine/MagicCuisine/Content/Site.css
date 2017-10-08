@@ -271,8 +271,16 @@ legend.border {
 
 .body .message {
     min-height: 50px;
-    min-width: 250px;
+    min-width: 350px;
     border-radius: 3px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #797979;
+}
+
+.message-footer {
+    display: flex;
+    justify-content: space-between;
     font-size: 14px;
     line-height: 1.5;
     color: #797979;
