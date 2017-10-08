@@ -3,7 +3,7 @@
         ViewBag.Title = "Index";
     }
 
-    @using (Html.BeginForm("Index", "Recipе", new { area = "Admin"}, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    @using (Html.BeginForm("Index", "Recipe", new { area = "Admin"}, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
 
@@ -12,7 +12,7 @@
         </div>
         <div class="row text-center">
             <div class="avatar-img col-md-4 text-center">
-                @Html.ImageActionLink("Link Display Text", "Upload", "UploadImage", new { area = "",  origin = "/admin/recipе/index" }, null, Model.Avatar)
+                @Html.ImageActionLink("Link Display Text", "Upload", "UploadImage", new { area = "",  origin = "/admin/recipe/index" }, null, Model.Avatar)
                 @Html.HiddenFor(m => m.Avatar)
             </div>
         </div>

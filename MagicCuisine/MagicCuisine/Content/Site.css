@@ -217,3 +217,7 @@ legend.border {
 .logo-container{
     padding: 0 !important;
 }
+
+.pre-wrap {
+   white-space: pre-wrap;
+}

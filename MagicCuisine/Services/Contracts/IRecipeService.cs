@@ -1,4 +1,5 @@
 ﻿using Data.Models;
+using System;
 using System.Collections.Generic;
 
 namespace Services.Contracts
@@ -8,5 +9,7 @@ namespace Services.Contracts
         void CreateRecipe(Recipe recipe);
 
         ICollection<Recipe> GetAll(bool isDeleted);
+
+        Recipe GetById(Guid id);
     }
 }

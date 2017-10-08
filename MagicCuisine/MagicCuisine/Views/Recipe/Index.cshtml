@@ -1,0 +1,18 @@
+﻿@model MagicCuisine.Models.RecipeIndexViewModel 
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row text-center">
+    <h1>@Model.recipe.Title</h1>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <img src="@Model.recipe.Avatar" />
+    </div>
+    <div class="col-md-9">
+        <h1>@Model.recipe.Title</h1>
+        <p class="pre-wrap">@Model.recipe.Description</p>
+    </div>
+</div>
+

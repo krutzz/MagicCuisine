@@ -38,7 +38,12 @@ namespace Services
 
         public ICollection<Recipe> GetAll(bool isDeleted)
         {
-           return this.recipeRepository.Find(r => r.IsDeleted == isDeleted).ToList();
+            return this.recipeRepository.Find(r => r.IsDeleted == isDeleted).ToList();
+        }
+
+        public Recipe GetById(Guid id)
+        {
+            return this.recipeRepository.Get(id);
         }
     }
 }

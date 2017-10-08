@@ -2,19 +2,16 @@
 using Data.Models;
 using MagicCuisine.Areas.Admin.Models;
 using Services.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MagicCuisine.Areas.Admin.Controllers
 {
-    public class RecipеController : Controller
+    [Authorize(Roles = "Admin")]
+    public class RecipeController : Controller
     {
         private readonly IRecipeService recipeService;
 
-        public RecipеController(IRecipeService recipeService)
+        public RecipeController(IRecipeService recipeService)
         {
             this.recipeService = recipeService;
         }

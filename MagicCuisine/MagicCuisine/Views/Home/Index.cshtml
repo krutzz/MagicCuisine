@@ -8,14 +8,29 @@
 </div>
 
 @{
-    for (int i = 0; i < Model.Recipes.Count; i++)
+    for (int i = 0; i < Model.Recipes.Count; i+=3)
     {
-        <div class="col-md-4">
-            <h2>@Model.Recipes[i].Title</h2>
-            <p>
-                @Model.Recipes[i].Description
-            </p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">More</a></p>
+        <div class="row">
+        @{
+            for (int j = i; j < Math.Min(i+3, Model.Recipes.Count); j++)
+            {
+             <div class="col-md-4">
+                 <h4>@Model.Recipes[j].Title</h4>
+                 <img src="@Model.Recipes[j].Avatar" />
+                 @{
+                     var description = Model.Recipes[j].Description;
+                     if (description.Length > 250)
+                     {
+                         description = description.Substring(0, 100) + "...";
+                     }
+                    <p class="pre-wrap">@description</p>
+                }
+                 <p>
+                     @Html.ActionLink("More", "Index", "Recipe", new { area = "", id = Model.Recipes[j].ID}, new { @class = "btn btn-default" })
+                 </p>
+             </div>
+            }
+        }       
         </div>
     }
 }
