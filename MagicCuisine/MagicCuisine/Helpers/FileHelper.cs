@@ -65,7 +65,7 @@ namespace MagicCuisine.Helpers
                 // ... delete the temporary file,...
                 System.IO.File.Delete(fn);
                 // ... and save the new one.
-                var newFileName = Path.Combine(AvatarPath, Path.GetFileName(fn));
+                var newFileName = Path.Combine(AvatarPath, DateTime.Now.ToString("yyyyMMddTHHmmss") + "_" + Path.GetFileName(fn));
                 var newFileLocation = HostingEnvironment.MapPath(newFileName);
                 if (Directory.Exists(Path.GetDirectoryName(newFileLocation)) == false)
                 {
