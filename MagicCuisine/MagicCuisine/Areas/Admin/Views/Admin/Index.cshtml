@@ -1,7 +1,47 @@
-﻿
+﻿@model ICollection<MagicCuisine.Areas.Admin.Models.CommentViewModel>
 @{
     ViewBag.Title = "Index";
 }
 
-@Html.ActionLink("Add New Recipe", "Index", "Recipe", new { area = "Admin" }, new { @class = "btn btn-default" })
-
+<div class="row mt-5">
+    @Html.ActionLink("Add New Recipe", "Index", "Recipe", new { area = "Admin" }, new { @class = "btn btn-default" })
+</div>
+<div class="row mt-5">
+   @(Html.Kendo()
+    .Grid(Model)
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(c => c.RecipeTitle);
+        columns.Bound(c => c.UserEmail);
+        columns.Bound(c => c.Date).Format("{0:MM/dd/yyyy H:mm:ss}");
+        columns.Bound(c => c.IsDeleted).Title("Deleted");
+        columns.Bound(c => c.Description);
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+    })
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable(p =>
+    {
+        p.PageSizes(true);
+        p.Refresh(true);
+    })
+    .Sortable()
+    .Scrollable()
+    .Filterable()
+    .HtmlAttributes(new { style = "height:350px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(5)
+        .Model(model => {
+            model.Id(c => c.ID);
+            model.Field(c => c.ID).Editable(false);
+            model.Field(c => c.RecipeTitle).Editable(false);
+            model.Field(c => c.UserEmail).Editable(false);
+        })
+        .Read(read => read.Action("GetComments", "Comment", new { area = "Admin" }))
+        .Update(update => update.Action("UpdateComment", "Comment", new { area = "Admin" }))
+        .Destroy(update => update.Action("DeleteComment", "Comment", new { area = "Admin" }))
+     )
+    .Deferred()
+)
+</div>

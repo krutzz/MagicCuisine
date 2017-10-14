@@ -1,5 +1,7 @@
 ﻿using Data.Models;
+using Services.Model;
 using System;
+using System.Collections.Generic;
 
 namespace Services.Contracts
 {
@@ -12,5 +14,9 @@ namespace Services.Contracts
         Comment GetCommentById(Guid commentId);
 
         void EditComment(Guid commentId, string description);
+
+        void EditComment(Guid commentId, CommentServiceModel model);
+
+        ICollection<Comment> GetAll();
     }
 }

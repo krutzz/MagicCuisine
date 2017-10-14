@@ -2,7 +2,10 @@
 using Data.Repository.Contracts;
 using Data.UnitOfWork;
 using Services.Contracts;
+using Services.Model;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Services
 {
@@ -77,6 +80,21 @@ namespace Services
             this.commentRepository.Update(comment);
 
             this.unitOfWork.Complete();
+        }
+
+        public void EditComment(Guid commentId, CommentServiceModel model)
+        {
+            var comment = this.commentRepository.Get(commentId);
+            comment.Description = model.Description;
+            comment.IsDeleted = model.IsDeleted;
+            this.commentRepository.Update(comment);
+
+            this.unitOfWork.Complete();
+        }
+
+        public ICollection<Comment> GetAll()
+        {
+            return this.commentRepository.GetAll().ToList();
         }
     }
 }

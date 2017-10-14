@@ -10,7 +10,12 @@ namespace MagicCuisine
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                         "~/Scripts/jquery.unobtrusive-ajax.js"));
+                        "~/Scripts/jquery.unobtrusive-ajax.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+                        "~/Scripts/Kendo/kendo.web.min.js",
+                        "~/Scripts/Kendo/kendo.aspnetmvc.min.js"
+                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -51,6 +56,11 @@ namespace MagicCuisine
 
             bundles.Add(new StyleBundle("~/Content/toastr").Include(
                       "~/Content/toastr.css"));
+
+            bundles.Add(new StyleBundle("~/Content/kendo-ui").Include(
+                      "~/Content/Kendo/kendo.bootstrap.min.css",
+                      "~/Content/Kendo/kendo.bootstrap.mobile.min.css",
+                      "~/Content/Kendo/kendo.common-bootstrap.min.css"));
         }
     }
 }
