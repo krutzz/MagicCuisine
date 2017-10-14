@@ -28,7 +28,7 @@ namespace MagicCuisine.Controllers
 
             var model = new RecipeIndexViewModel()
             {
-                recipe = recipeModel
+                Recipe = recipeModel
             };
 
             return View(model);

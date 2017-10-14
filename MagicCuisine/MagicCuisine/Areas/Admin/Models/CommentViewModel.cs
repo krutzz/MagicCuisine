@@ -27,6 +27,5 @@ namespace MagicCuisine.Areas.Admin.Models
             configuration.CreateMap<Comment, CommentViewModel>()
                   .ForMember(c => c.RecipeTitle, cfg => cfg.MapFrom(x => x.Recipe.Title));
         }
-
     }
 }

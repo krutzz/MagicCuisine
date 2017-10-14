@@ -2,6 +2,6 @@
 {
     public class RecipeIndexViewModel
     {
-        public RecipeViewModel recipe { get; set; }
+        public RecipeViewModel Recipe { get; set; }
     }
 }

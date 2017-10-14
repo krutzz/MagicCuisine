@@ -2,6 +2,7 @@
 using Data.Models;
 using MagicCuisine.Areas.Admin.Models;
 using Services.Contracts;
+using System;
 using System.Web.Mvc;
 
 namespace MagicCuisine.Areas.Admin.Controllers
@@ -13,6 +14,11 @@ namespace MagicCuisine.Areas.Admin.Controllers
 
         public RecipeController(IRecipeService recipeService)
         {
+            if (recipeService == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             this.recipeService = recipeService;
         }
 

@@ -37,9 +37,9 @@ namespace MagicCuisine.Controllers
         public ActionResult Save(string t, string l, string h, string w, string fileName, string origin)
         {
             var result = this.fileHelper.CropImage(t, l, h, w, fileName, origin);
-            if (result.success)
+            if (result.Success)
             {
-                TempData["avatar"] = result.avatarFileLocation;
+                TempData["avatar"] = result.AvatarFileLocation;
             }
             return Json(result.ToJson());
         }
