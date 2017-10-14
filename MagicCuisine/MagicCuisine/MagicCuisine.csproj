@@ -295,6 +295,8 @@
     <Content Include="Scripts\jquery.form.min.js" />
     <Content Include="Scripts\jquery.Jcrop.js" />
     <Content Include="Scripts\jquery.Jcrop.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -329,6 +331,7 @@
     <Content Include="Views\UploadImage\_Upload.cshtml" />
     <Content Include="Views\Recipe\Index.cshtml" />
     <Content Include="Views\Comment\Index.cshtml" />
+    <Content Include="Views\Comment\_EditComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

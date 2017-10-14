@@ -1,4 +1,5 @@
-﻿using MagicCuisine.Models;
+﻿using AutoMapper;
+using MagicCuisine.Models;
 using Microsoft.AspNet.Identity;
 using Services.Contracts;
 using System;
@@ -13,7 +14,7 @@ namespace MagicCuisine.Controllers
 
         public CommentController(ICommentService commentService)
         {
-            if(commentService == null)
+            if (commentService == null)
             {
                 throw new ArgumentNullException();
             }
@@ -50,8 +51,25 @@ namespace MagicCuisine.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Guid commentId, Guid recipeId)
         {
-             this.commentService.DeleteComment(commentId);
-             return RedirectToAction("Index", "Recipe", new { id = recipeId });
+            this.commentService.DeleteComment(commentId);
+            return RedirectToAction("Index", "Recipe", new { id = recipeId });
+        }
+
+        [HttpGet]
+        public ActionResult Edit(Guid commentId)
+        {
+            var comment = this.commentService.GetCommentById(commentId);
+            var commentModel = Mapper.Map<CommentViewModel>(comment);
+
+            return PartialView("_EditComment", commentModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(CommentViewModel model)
+        {
+            this.commentService.EditComment(model.ID, model.Description);
+
+            return RedirectToAction("Index", "Recipe", new { id = model.RecipeID });
         }
     }
 }

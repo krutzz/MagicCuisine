@@ -36,7 +36,9 @@
                 <div class="body">
                     <span class="tip tip-left"></span>
                     <div class="message">
-                        <span class="pre-wrap">@item.Description</span>
+                        <div id=@("edit-" + item.ID)>
+                            <span class="pre-wrap">@item.Description</span>
+                        </div>
                     </div>
                     <div class="message-footer">
                         <div class="col">@item.UserEmail</div>
@@ -52,13 +54,25 @@
                         @Html.AntiForgeryToken()
                         @Html.Hidden("commentId", item.ID)
                         @Html.Hidden("recipeId", Model.recipe.ID)
-                        <button type="submit" class="btn btn-primary">@Html.FontAwesome(FontAwesomeIconSet.Close)</button>
+                        <button type="submit" class="btn btn-primary control-button">@Html.FontAwesome(FontAwesomeIconSet.Close)</button>
+                    }
+                </div>
+                <div>
+                    @using (Ajax.BeginForm("Edit",
+                                    "Comment",
+                                    new { commentId = item.ID },
+                                    new AjaxOptions
+                                    {
+                                        HttpMethod = "GET",
+                                        UpdateTargetId = "edit-" + item.ID,
+                                        InsertionMode = InsertionMode.Replace
+                                    },
+                                    new { @class = "form-horizontal", role = "form" }))
+                    {
+                        <button type="submit" class="btn btn-primary control-button">@Html.FontAwesome(FontAwesomeIconSet.Pencil)</button>
                     }
                 </div>
             }
-
         </div>
     }
 }
-
-

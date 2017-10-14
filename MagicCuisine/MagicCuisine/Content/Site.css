@@ -285,3 +285,7 @@ legend.border {
     line-height: 1.5;
     color: #797979;
 }
+
+.control-button{
+    margin: 1px;
+}

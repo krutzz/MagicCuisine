@@ -17,6 +17,8 @@ namespace MagicCuisine.Models
 
         public string UserAvatar { get; set; }
 
+        public Guid RecipeID { get; set; }
+
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Comment, CommentViewModel>()
@@ -24,6 +26,9 @@ namespace MagicCuisine.Models
 
             configuration.CreateMap<Comment, CommentViewModel>()
                     .ForMember(c => c.UserEmail, cfg => cfg.MapFrom(x => x.User.Email));
+
+            configuration.CreateMap<Comment, CommentViewModel>()
+                  .ForMember(c => c.RecipeID, cfg => cfg.MapFrom(x => x.Recipe.ID));
         }
     }
 }

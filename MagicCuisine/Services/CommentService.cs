@@ -6,7 +6,7 @@ using System;
 
 namespace Services
 {
-    public class CommentService: ICommentService
+    public class CommentService : ICommentService
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly ICommentRepository commentRepository;
@@ -15,7 +15,7 @@ namespace Services
 
         public CommentService(IUserRepository userRepository, IRecipeRepository recipeRepository, ICommentRepository commentRepository, IUnitOfWork unitOfWork)
         {
-            if(userRepository == null)
+            if (userRepository == null)
             {
                 throw new ArgumentNullException();
             }
@@ -59,6 +59,21 @@ namespace Services
         {
             var comment = this.commentRepository.Get(commentId);
             comment.IsDeleted = true;
+            this.commentRepository.Update(comment);
+
+            this.unitOfWork.Complete();
+        }
+
+        public Comment GetCommentById(Guid commentId)
+        {
+            return this.commentRepository.Get(commentId);
+        }
+
+        public void EditComment(Guid commentId, string description)
+        {
+            var comment = this.commentRepository.Get(commentId);
+            comment.Description = description;
+            comment.Date = DateTime.Now;
             this.commentRepository.Update(comment);
 
             this.unitOfWork.Complete();

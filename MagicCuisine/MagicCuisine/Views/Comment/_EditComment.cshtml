@@ -1,0 +1,12 @@
+﻿@model MagicCuisine.Models.CommentViewModel
+
+@using (Html.BeginForm("Edit", "Comment", FormMethod.Post, new {role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ID)
+    @Html.HiddenFor(m => m.RecipeID)
+    <div class="form-group">
+        @Html.TextAreaFor(m => m.Description, new { style = "width: 100%", rows = 5, cols = 40})
+    </div>
+    <button type="submit" class="btn btn-primary">Edit</button>
+}
