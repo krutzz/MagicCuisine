@@ -59,8 +59,22 @@ namespace Services
 
         public Address CreateAddress(AddressServiceModel model)
         {
+            if(model == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             var country = this.countryRepository.Get(model.Country);
+            if(country == null)
+            {
+                throw new NullReferenceException("Country not found");
+            }
+
             var town = this.townRepository.Get(model.Town);
+            if(town == null)
+            {
+                throw new NullReferenceException("Town not found");
+            }
 
             var address = new Address(model.Street, model.Building, model.Entrance, model.Floor, model.Flat, model.PostalCode, country, town);
 

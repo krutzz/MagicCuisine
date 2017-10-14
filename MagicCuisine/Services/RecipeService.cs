@@ -32,6 +32,11 @@ namespace Services
 
         public void CreateRecipe(Recipe recipe)
         {
+            if(recipe == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             this.recipeRepository.Add(recipe);
             this.unitOfWork.Complete();
         }
