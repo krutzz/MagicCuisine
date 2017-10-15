@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using MagicCuisine.Models;
+﻿using MagicCuisine.Models;
+using MagicCuisine.Providers;
 using Microsoft.AspNet.Identity;
 using Services.Contracts;
 using System;
@@ -11,8 +11,9 @@ namespace MagicCuisine.Controllers
     public class CommentController : Controller
     {
         private readonly ICommentService commentService;
+        private readonly IMapProvider mapProvider;
 
-        public CommentController(ICommentService commentService)
+        public CommentController(ICommentService commentService, IMapProvider mapProvider)
         {
             if (commentService == null)
             {
@@ -20,6 +21,13 @@ namespace MagicCuisine.Controllers
             }
 
             this.commentService = commentService;
+
+            if (mapProvider == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            this.mapProvider = mapProvider;
         }
 
         // GET: Comment
@@ -59,7 +67,7 @@ namespace MagicCuisine.Controllers
         public ActionResult Edit(Guid commentId)
         {
             var comment = this.commentService.GetCommentById(commentId);
-            var commentModel = Mapper.Map<CommentViewModel>(comment);
+            var commentModel = this.mapProvider.GetMap<CommentViewModel>(comment);
 
             return PartialView("_EditComment", commentModel);
         }
