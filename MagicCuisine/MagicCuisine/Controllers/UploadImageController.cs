@@ -1,4 +1,5 @@
 ﻿using MagicCuisine.Helpers.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
@@ -11,6 +12,11 @@ namespace MagicCuisine.Controllers
 
         public UploadImageController(IFileHelper fileHelper)
         {
+            if (fileHelper == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             this.fileHelper = fileHelper;
         }
 
