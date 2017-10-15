@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Collections.Generic;
 
 namespace MagicCuisine.Providers
 {
@@ -7,6 +8,11 @@ namespace MagicCuisine.Providers
         public T GetMap<T>(object source)
         {
             return Mapper.Map<T>(source);
+        }
+
+        public ICollection<T> GetMapCollection<T>(object source)
+        {
+            return Mapper.Map<ICollection<T>>(source);
         }
     }
 }

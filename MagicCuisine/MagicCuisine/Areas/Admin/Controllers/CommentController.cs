@@ -1,12 +1,11 @@
-﻿using AutoMapper;
-using Kendo.Mvc.UI;
+﻿using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using MagicCuisine.Areas.Admin.Models;
 using Services.Contracts;
 using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using Services.Model;
+using MagicCuisine.Providers;
 
 namespace MagicCuisine.Areas.Admin.Controllers
 {
@@ -14,8 +13,9 @@ namespace MagicCuisine.Areas.Admin.Controllers
     public class CommentController : Controller
     {
         private readonly ICommentService commentService;
+        private readonly IMapProvider mapProvider;
 
-        public CommentController(ICommentService commentService)
+        public CommentController(ICommentService commentService, IMapProvider mapProvider)
         {
             if (commentService == null)
             {
@@ -23,13 +23,20 @@ namespace MagicCuisine.Areas.Admin.Controllers
             }
 
             this.commentService = commentService;
+
+            if (mapProvider == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            this.mapProvider = mapProvider;
         }
 
         public ActionResult GetComments([DataSourceRequest] DataSourceRequest request)
         {
             var comments = this.commentService.GetAll();
 
-            var commentViewList = Mapper.Map<ICollection<CommentViewModel>>(comments);
+            var commentViewList = this.mapProvider.GetMapCollection<CommentViewModel>(comments);
 
             var result = commentViewList.ToDataSourceResult(request);
 

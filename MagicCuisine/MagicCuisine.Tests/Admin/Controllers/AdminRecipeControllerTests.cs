@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace MagicCuisine.Tests.Admin.Controllers
 {
     [TestFixture]
-    public class AdminRecipeController
+    public class AdminRecipeControllerTests
     {
         [Test]
         public void ConstructorShould_ThrowArgumentNullException_WhenNullRecipeServiceIsPassedAsParameter()
