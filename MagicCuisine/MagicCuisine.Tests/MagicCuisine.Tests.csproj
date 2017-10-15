@@ -94,6 +94,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Controllers\AdminControllerTests.cs" />
     <Compile Include="Controllers\RecipeControllerTests.cs" />
     <Compile Include="Controllers\UploadImageControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
