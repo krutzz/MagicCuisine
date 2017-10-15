@@ -102,6 +102,7 @@
     <Compile Include="Admin\Controllers\AdminControllerTests.cs" />
     <Compile Include="Admin\Controllers\AdminRecipeControllerTests.cs" />
     <Compile Include="Controllers\CommentControllerTests.cs" />
+    <Compile Include="Controllers\HomeControllerTests.cs" />
     <Compile Include="Controllers\RecipeControllerTests.cs" />
     <Compile Include="Controllers\UploadImageControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
