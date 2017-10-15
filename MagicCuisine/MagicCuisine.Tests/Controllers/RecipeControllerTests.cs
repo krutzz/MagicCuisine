@@ -136,7 +136,7 @@ namespace MagicCuisine.Tests.Controllers
             ViewResult result = controller.Index(recipeId) as ViewResult;
 
             // Assert
-            Assert.AreEqual(string.Empty, result.View);
+            Assert.AreEqual(string.Empty, result.ViewName);
         }
     }
 }
