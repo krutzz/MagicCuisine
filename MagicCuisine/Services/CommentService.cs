@@ -61,6 +61,11 @@ namespace Services
 
         public void CreateComment(string userId, Guid recipeId, string description)
         {
+            if(userId == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             var user = this.userRepository.Get(userId);
 
             var recipe = this.recipeRepository.Get(recipeId);
