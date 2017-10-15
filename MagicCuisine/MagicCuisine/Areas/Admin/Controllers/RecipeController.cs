@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Data.Models;
+﻿using Data.Models;
 using MagicCuisine.Areas.Admin.Models;
+using MagicCuisine.Providers;
 using Services.Contracts;
 using System;
 using System.Web.Mvc;
@@ -11,8 +11,9 @@ namespace MagicCuisine.Areas.Admin.Controllers
     public class RecipeController : Controller
     {
         private readonly IRecipeService recipeService;
+        private readonly IMapProvider mapProvider;
 
-        public RecipeController(IRecipeService recipeService)
+        public RecipeController(IRecipeService recipeService, IMapProvider mapProvider)
         {
             if (recipeService == null)
             {
@@ -20,6 +21,13 @@ namespace MagicCuisine.Areas.Admin.Controllers
             }
 
             this.recipeService = recipeService;
+
+            if (mapProvider == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            this.mapProvider = mapProvider;
         }
 
         // GET: Admin/Recipе
@@ -40,7 +48,7 @@ namespace MagicCuisine.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(IndexViewModel model)
         {
-            var recipe = Mapper.Map<Recipe>(model);
+            var recipe = this.mapProvider.GetMap<Recipe>(model);
             this.recipeService.CreateRecipe(recipe);
 
             return RedirectToAction("Index", "Home", new { area = "" });
