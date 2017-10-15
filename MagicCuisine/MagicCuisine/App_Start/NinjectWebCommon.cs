@@ -20,6 +20,7 @@ namespace MagicCuisine.App_Start
     using Data.Repository;
     using AutoMapper;
     using Services.Providers;
+    using MagicCuisine.Providers;
 
     public static class NinjectWebCommon
     {
@@ -88,6 +89,7 @@ namespace MagicCuisine.App_Start
             kernel.Bind<ICommentRepository>().To<CommentRepository>().InRequestScope();
 
             kernel.Bind<IDateProvider>().To<DateProvider>().InSingletonScope();
+            kernel.Bind<IMapProvider>().To<MapProvider>().InSingletonScope();
         }
     }
 }
