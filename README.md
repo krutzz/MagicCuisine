@@ -9,7 +9,7 @@ MagicCuisine is personal blog post site for recipes.
     - List of all posted recipes
     ![image](./ProjectScreenshots/home.png)
   - Recipe detail page
-    - Ingredients, Mothod and Comments
+    - Ingredients, Method and Comments
     ![image](./ProjectScreenshots/recipe-details.png)
   - Registration
     - Upload profile avatar
